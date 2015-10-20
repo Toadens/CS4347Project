@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `simple_company`.`Purchase` (
 	`purchaseID` INT NOT NULL,
 	`customerID` INT NOT NULL,
 	`purchaseDate` DATE NOT NULL,
-	`purchaseAmount` BIGINT NOT NULL,
+	`purchaseAmount` NUMERIC(15,2) NOT NULL,
 	PRIMARY KEY (`id`),
 	CONSTRAINT `purchase_ibfk_1`
 		FOREIGN KEY (`customerID`)
@@ -58,9 +58,9 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `simple_company`.`Address` (
 	`address1` VARCHAR(50) NOT NULL,
 	`address2` VARCHAR(50) NULL DEFAULT NULL,
-	`city` VARCHAR(30) NOT NULL,
+	`city` VARCHAR(15) NOT NULL,
 	`state` CHAR(2) NOT NULL,
-	`zipcode` CHAR(10) NOT NULL,
+	`zipcode` INT NOT NULL,
 	`customerID` INT NOT NULL,
 	INDEX `customerID` (`customerID` ASC),
 	CONSTRAINT `address_ibfk_1`
@@ -73,7 +73,7 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `simple_company`.`CreditCard` (
 	`name` VARCHAR(50) NOT NULL,
 	`ccNumber` VARCHAR(30) NOT NULL,
-	`expDate` VARCHAR(10) NOT NULL,
+	`expDate` VARCHAR(5) NOT NULL,
 	`securityCode` VARCHAR(4) NOT NULL,
 	`customerID` INT NOT NULL,
 	INDEX `customerID` (`customerID` ASC),
