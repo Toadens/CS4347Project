@@ -25,24 +25,6 @@ CREATE TABLE IF NOT EXISTS `simple_company`.`Customer` (
 	PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
-	
--- Create the table for Purchase --
-
-CREATE TABLE IF NOT EXISTS `simple_company`.`Purchase` (
-	`id` INT NOT NULL AUTO_INCREMENT,
-	`productID` INT NOT NULL,
-	`customerID` INT NOT NULL,
-	`purchaseDate` DATE NOT NULL,
-	`purchaseAmount` NUMERIC(15,2) NOT NULL,
-	PRIMARY KEY (`id`),
-	CONSTRAINT `purchase_ibfk_1`
-		FOREIGN KEY (`customerID`)
-		REFERENCES `simple_company`.`Customer` (`id`))
-	CONSTRAINT `purchase_ibfk_2`
-		FOREIGN KEY (`productID`)
-		REFERENCES `simple_company`.`Product` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
 
 -- Create the table for Product --
 
@@ -56,6 +38,24 @@ CREATE TABLE IF NOT EXISTS `simple_company`.`Product` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 	
+-- Create the table for Purchase --
+
+CREATE TABLE IF NOT EXISTS `simple_company`.`Purchase` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`productID` INT NOT NULL,
+	`customerID` INT NOT NULL,
+	`purchaseDate` DATE NOT NULL,
+	`purchaseAmount` NUMERIC(15,2) NOT NULL,
+	PRIMARY KEY (`id`),
+	CONSTRAINT `purchase_ibfk_1`
+		FOREIGN KEY (`customerID`)
+		REFERENCES `simple_company`.`Customer` (`id`),
+	CONSTRAINT `purchase_ibfk_2`
+		FOREIGN KEY (`productID`)
+		REFERENCES `simple_company`.`Product` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
 -- Create the table for Address --
 
 CREATE TABLE IF NOT EXISTS `simple_company`.`Address` (
