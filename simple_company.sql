@@ -61,9 +61,9 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `simple_company`.`Address` (
 	`address1` VARCHAR(50) NOT NULL,
 	`address2` VARCHAR(50) NULL DEFAULT NULL,
-	`city` VARCHAR(15) NOT NULL,
+	`city` VARCHAR(30) NOT NULL,
 	`state` CHAR(2) NOT NULL,
-	`zipcode` INT NOT NULL,
+	`zipcode` CHAR(10) NOT NULL,
 	`customerID` INT NOT NULL,
 	INDEX `customerID` (`customerID` ASC),
 	CONSTRAINT `address_ibfk_1`
