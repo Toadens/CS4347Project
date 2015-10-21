@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `simple_company`.`Customer` (
 	`firstName` VARCHAR(45) NOT NULL,
 	`lastName` VARCHAR(45) NOT NULL,
 	`gender` CHAR(1) NOT NULL,
-	`dob` TIMESTAMP NOT NULL,
+	`dob` DATE NOT NULL,
 	`email` VARCHAR(45) NOT NULL,
 	`address` VARCHAR(45) NOT NULL,
 	`creditCard` VARCHAR(45) NOT NULL,
