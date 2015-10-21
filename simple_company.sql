@@ -1,11 +1,9 @@
 /*
  * simple_company sql schema 
- * Made by Johnny Edgett
+ * Made by Johnny Edgett, Michael Franceus, Mohammad Khan
  * CS4347.001
  * Project 1
- * Based on the company-schema
- * TODO
- * Check on if everything should be "not null" versus "null default null" or "null"
+ * Based on the company-schema.mysql by Michael Christiansen
  */
 
 -- Create the Schema and then set it as schema we want to use
