@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,38 @@ public class CustomerDaoImpl implements CustomerDAO
 
 	@Override
 	public Customer create(Connection connection, Customer customer) throws SQLException, DAOException {
-		
+		final String insertQuery = "INSERT INTO Customer (firstName, lastName, gender, dob, email, address, creditcard) VALUES (?, ?, ?, ?, ?, ?, ?);";
+		if(customer.getId()==null){
+			throw new DAOException("Attempting to create a customer with a non-null id");
+		}
+		PreparedStatement ps = null;
+		try{
+			ps = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, customer.getFirstName());
+			ps.setString(2, customer.getLastName());
+			ps.setString(3, customer.getGender().toString());
+			ps.setDate(4, customer.getDob());
+			ps.setString(5, customer.getEmail());
+			ps.setString(6, customer.getAddress()); //Not sure how to do this
+			ps.setString(7, customer.getCreditCard()); //Not sure how to do this
+			ps.executeUpdate();
+			
+			ResultSet keyRS = ps.getGeneratedKeys();
+			keyRS.next();
+			int lastKey = keyRS.getInt(1);
+			customer.setId((long) lastKey);
+		}
+		finally 
+		{
+			if (ps != null && !ps.isClosed()) 
+			{
+				ps.close();
+			}
+			if (connection != null && !connection.isClosed()) 
+			{
+				connection.close();
+			}
+		}
 		return null;
 	}
 
