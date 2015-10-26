@@ -20,7 +20,7 @@ public class CustomerDaoImpl implements CustomerDAO
 
 	@Override
 	public Customer create(Connection connection, Customer customer) throws SQLException, DAOException {
-		final String insertQuery = "INSERT INTO Customer (firstName, lastName, gender, dob, email, address, creditcard) VALUES (?, ?, ?, ?, ?, ?, ?);";
+		final String insertQuery = "INSERT INTO Customer (firstName, lastName, gender, dob, email ) VALUES (?, ?, ?, ?, ?,);";
 		if(customer.getId()==null){
 			throw new DAOException("Attempting to create a customer with a non-null id");
 		}
@@ -32,8 +32,6 @@ public class CustomerDaoImpl implements CustomerDAO
 			ps.setString(3, customer.getGender().toString());
 			ps.setDate(4, customer.getDob());
 			ps.setString(5, customer.getEmail());
-			ps.setString(6, customer.getAddress()); //Not sure how to do this
-			ps.setString(7, customer.getCreditCard()); //Not sure how to do this
 			ps.executeUpdate();
 			
 			ResultSet keyRS = ps.getGeneratedKeys();
