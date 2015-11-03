@@ -53,6 +53,7 @@ public class CustomerPersistenceServiceImpl implements CustomerPersistenceServic
 			if (cust.getAddress() == null) {
 				throw new DAOException("Customers must include an Address instance.");
 			}
+			
 			Address address = cust.getAddress();
 			addressDAO.create(connection, address, custID);
 
