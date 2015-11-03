@@ -9,19 +9,21 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import cs4347.jdbcProject.ecomm.dao.AddressDAO;
+import cs4347.jdbcProject.ecomm.dao.CreditCardDAO;
 import cs4347.jdbcProject.ecomm.dao.CustomerDAO;
-import cs4347.jdbcProject.ecomm.util.DAOException;
 import cs4347.jdbcProject.ecomm.entity.Address;
 import cs4347.jdbcProject.ecomm.entity.CreditCard;
 import cs4347.jdbcProject.ecomm.entity.Customer;
+import cs4347.jdbcProject.ecomm.util.DAOException;
 
 public class CustomerDaoImpl implements CustomerDAO
 {
 
 	@Override
 	public Customer create(Connection connection, Customer customer) throws SQLException, DAOException {
-		final String insertQuery = "INSERT INTO Customer (firstName, lastName, gender, dob, email ) VALUES (?, ?, ?, ?, ?,);";
-		if(customer.getId()==null){
+		final String insertQuery = "INSERT INTO Customer (firstName, lastName, gender, dob, email) VALUES (?, ?, ?, ?, ?);";
+		if(customer.getId() != null){
 			throw new DAOException("Attempting to create a customer with a non-null id");
 		}
 		PreparedStatement ps = null;
@@ -32,6 +34,9 @@ public class CustomerDaoImpl implements CustomerDAO
 			ps.setString(3, customer.getGender().toString());
 			ps.setDate(4, customer.getDob());
 			ps.setString(5, customer.getEmail());
+			
+			
+			
 			ps.executeUpdate();
 			
 			ResultSet keyRS = ps.getGeneratedKeys();
