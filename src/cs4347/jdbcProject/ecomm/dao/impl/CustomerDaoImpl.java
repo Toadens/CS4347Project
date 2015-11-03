@@ -20,8 +20,8 @@ public class CustomerDaoImpl implements CustomerDAO
 
 	@Override
 	public Customer create(Connection connection, Customer customer) throws SQLException, DAOException {
-		final String insertQuery = "INSERT INTO Customer (firstName, lastName, gender, dob, email ) VALUES (?, ?, ?, ?, ?,);";
-		if(customer.getId()==null){
+		final String insertQuery = "INSERT INTO Customer (firstName, lastName, gender, dob, email ) VALUES (?, ?, ?, ?, ?);";
+		if(customer.getId() !=null){
 			throw new DAOException("Attempting to create a customer with a non-null id");
 		}
 		PreparedStatement ps = null;

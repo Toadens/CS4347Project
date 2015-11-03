@@ -23,6 +23,7 @@ public class AddressDaoImpl implements AddressDAO
 		PreparedStatement ps = null;
 		try{
 			ps = connection.prepareStatement(createQuery, Statement.RETURN_GENERATED_KEYS);
+			System.out.println("Here we are!!!");
 			ps.setString(1, address.getAddress1());
 			ps.setString(2, address.getAddress2());
 			ps.setString(3, address.getCity());
